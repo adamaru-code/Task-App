@@ -1,10 +1,4 @@
 class TasksController < ApplicationController
-<<<<<<< HEAD
-  
-  def index
-    @tasks = Task.all
-  end
-=======
   before_action :set_user
   
   def new
@@ -59,5 +53,4 @@ class TasksController < ApplicationController
     def set_user
       @user = User.find(params[:user_id])
     end
->>>>>>> add-user-tasks
 end
