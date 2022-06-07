@@ -1,6 +1,12 @@
 class SessionsController < ApplicationController
   
   def new
+    if logged_in?
+      flash[:success] = "すでにログインしています。"
+      redirect_to @current_user
+    else
+      render :new
+    end
   end
   
   def create
