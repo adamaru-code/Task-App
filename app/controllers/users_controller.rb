@@ -4,6 +4,10 @@ class UsersController < ApplicationController
   before_action :correct_user, only: [:edit, :update]
   before_action :admin_user, only: [:index, :destroy]
   before_action :admin_or_correct, only: :show
+<<<<<<< HEAD
+=======
+    
+>>>>>>> editing-tasks
   
   def index
     @users = User.paginate(page: params[:page], per_page: 20)
@@ -13,6 +17,10 @@ class UsersController < ApplicationController
   end
 
   def new
+    if logged_in? && !current_user.admin?
+      flash[:info] = 'すでにログインしています。'
+      redirect_to current_user
+    end    
     @user = User.new
   end
   
@@ -66,15 +74,5 @@ class UsersController < ApplicationController
         flash[:danger] = "ログインしてください。"
         redirect_to login_url
       end
-    end
-    
-    # アクセスしたユーザーが現在ログインしているユーザーか確認します。
-    def correct_user
-      redirect_to(root_url) unless current_user?(@user)
-    end
-    
-    # システム管理権限所有かどうか判定します。
-    def admin_user
-      redirect_to root_url unless current_user.admin?
     end
 end

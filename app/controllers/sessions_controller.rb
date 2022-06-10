@@ -2,10 +2,15 @@ class SessionsController < ApplicationController
   
   def new
     if logged_in?
+<<<<<<< HEAD
       flash[:success] = "すでにログインしています。"
       redirect_to @current_user
     else
       render :new
+=======
+      flash[:info] = 'すでにログインしています。'
+      redirect_to current_user
+>>>>>>> editing-tasks
     end
   end
   
